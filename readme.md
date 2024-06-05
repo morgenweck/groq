@@ -18,8 +18,8 @@ This project is a simple Flask application that accepts user input from a web fo
 
 ### 1. Clone the Repository
 
-git clone https://github.com/your-repository-url.git
-cd your-repository-directory
+git clone https://github.com/darkevo24/groq.git
+cd groq
 
 ### 2. Create and Activate a Virtual Environment
 
