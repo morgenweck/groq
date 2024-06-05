@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Groq Request Form</title>
+    <!-- Tailwind CSS CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-100 p-10">
+    <div class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md">
+      <h1 class="text-2xl font-bold mb-4">Send a Groq Request</h1>
+      <form id="groqForm">
+        <div class="mb-4">
+          <label for="requestData" class="block text-gray-700 font-bold mb-2"
+            >Request Data:</label
+          >
+          <textarea
+            id="requestData"
+            name="requestData"
+            rows="10"
+            cols="50"
+            class="w-full p-2 border border-gray-300 rounded-lg"
+          ></textarea>
+        </div>
+        <div class="mb-4">
+          <input
+            type="button"
+            value="Send Request"
+            onclick="sendGroqRequest()"
+            class="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-lg cursor-pointer hover:bg-blue-600"
+          />
+        </div>
+      </form>
+      <p id="response" class="mt-4 p-2 bg-gray-200 rounded-lg"></p>
+    </div>
+
+    <script>
+      async function sendGroqRequest() {
+        const requestData = document.getElementById("requestData").value;
+        const response = await fetch("/groq", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ requestData }),
+        });
+
+        const responseData = await response.json();
+        document.getElementById("response").innerText = JSON.stringify(
+          responseData,
+          null,
+          2
+        );
+      }
+    </script>
+  </body>
+</html>
